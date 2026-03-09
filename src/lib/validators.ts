@@ -54,7 +54,6 @@ export const studentCreateSchema = z.object({
   gpa: z.number().min(MIN_GPA).max(MAX_GPA).optional().nullable(),
   status: z
     .enum(["ACTIVE", "INACTIVE", "GRADUATED", "SUSPENDED"])
-    .optional()
     .default("ACTIVE"),
   notes: z.string().max(2000, "Notes must be 2000 characters or less").optional().nullable(),
 });
