@@ -3,3 +3,4 @@
 
 export { studentService } from "./student.service";
 export { auditLogService } from "./audit-log.service";
+export { userService } from "./user.service";
