@@ -2,6 +2,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 
+import { SessionProvider } from "@/components/providers/session-provider";
+import { ToastProvider } from "@/components/providers/toast-provider";
 import "@/styles/globals.css";
 
 const inter = Inter({
@@ -44,11 +46,14 @@ export default function RootLayout({
     <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head />
       <body className="min-h-screen bg-white font-sans antialiased dark:bg-slate-950">
-        {/* Skip to main content — accessibility */}
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
-        {children}
+        <SessionProvider>
+          {/* Skip to main content — accessibility */}
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
+          {children}
+          <ToastProvider />
+        </SessionProvider>
       </body>
     </html>
   );

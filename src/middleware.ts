@@ -7,7 +7,7 @@ import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 // Routes that require authentication
-const protectedPaths = ["/dashboard", "/students", "/settings", "/profile"];
+const protectedPaths = ["/dashboard", "/students", "/settings", "/profile", "/audit-logs", "/users"];
 
 // Routes that should redirect to dashboard if already logged in
 const authPaths = ["/login", "/register", "/forgot-password", "/reset-password"];
@@ -47,6 +47,8 @@ export const config = {
     "/students/:path*",
     "/settings/:path*",
     "/profile/:path*",
+    "/audit-logs/:path*",
+    "/users/:path*",
     "/login",
     "/register",
     "/forgot-password",

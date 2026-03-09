@@ -3,6 +3,5 @@
 import { redirect } from "next/navigation";
 
 export default function HomePage() {
-  // In Phase 3, this will check auth and redirect accordingly
-  redirect("/login");
+  redirect("/dashboard");
 }
