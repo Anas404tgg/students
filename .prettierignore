@@ -1,0 +1,9 @@
+.next/
+out/
+node_modules/
+coverage/
+storybook-static/
+playwright-report/
+test-results/
+analyze/
+*.tsbuildinfo

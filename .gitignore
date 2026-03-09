@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Build
+.next/
+out/
+build/
+dist/
+
+# Testing
+coverage/
+playwright-report/
+test-results/
+
+# Storybook
+storybook-static/
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+
+# Environment
+.env
+.env.local
+.env.production.local
+.env.development.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+npm-debug.log*
+analyze/
+*.tsbuildinfo

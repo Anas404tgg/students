@@ -1,0 +1,137 @@
+// prisma/schema.prisma
+// Student Management System — Database Schema
+// Supports SQLite (local dev) and PostgreSQL (production)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── User & Auth ─────────────────────────────────────────────
+
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  name           String?
+  password       String // bcrypt-hashed
+  role           String    @default("USER") // "ADMIN" | "USER"
+  avatar         String?
+  emailVerified  DateTime?
+  resetToken     String? // Password reset token (hashed)
+  resetTokenExp  DateTime? // Token expiration
+  lastLoginAt    DateTime?
+  isActive       Boolean   @default(true)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  // Relations
+  auditLogs AuditLog[]
+  sessions  Session[]
+
+  @@index([email])
+  @@index([role])
+  @@map("users")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+// ─── Student ─────────────────────────────────────────────────
+
+model Student {
+  id          String    @id @default(cuid())
+  firstName   String
+  lastName    String
+  email       String    @unique
+  dateOfBirth DateTime?
+  gender      String? // "MALE" | "FEMALE" | "OTHER" | "PREFER_NOT_TO_SAY"
+  phone       String?
+  address     String?
+  city        String?
+  state       String?
+  zipCode     String?
+  country     String?   @default("US")
+  enrollmentDate DateTime @default(now())
+  graduationDate DateTime?
+  program     String?
+  year        Int?      @default(1) // Academic year (1-6)
+  gpa         Float?
+  status      String    @default("ACTIVE") // "ACTIVE" | "INACTIVE" | "GRADUATED" | "SUSPENDED"
+  notes       String?
+  avatar      String?
+
+  // Soft delete
+  isDeleted   Boolean   @default(false)
+  deletedAt   DateTime?
+
+  // Optimistic concurrency
+  version     Int       @default(1)
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  auditLogs AuditLog[]
+
+  @@index([email])
+  @@index([firstName, lastName])
+  @@index([status])
+  @@index([isDeleted])
+  @@index([enrollmentDate])
+  @@index([program])
+  @@index([createdAt])
+  @@map("students")
+}
+
+// ─── Audit Log ───────────────────────────────────────────────
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String // "CREATE" | "UPDATE" | "DELETE" | "RESTORE" | "HARD_DELETE" | "EXPORT" | "IMPORT" | "LOGIN"
+  entity    String // "Student" | "User"
+  entityId  String?
+  userId    String?
+  userName  String? // Denormalized for quick reads
+  changes   String? // JSON diff of changes
+  ipAddress String?
+  userAgent String?
+  metadata  String? // Additional JSON context
+  createdAt DateTime @default(now())
+
+  // Relations
+  user    User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  student Student? @relation(fields: [entityId], references: [id], onDelete: SetNull)
+
+  @@index([action])
+  @@index([entity, entityId])
+  @@index([userId])
+  @@index([createdAt])
+  @@map("audit_logs")
+}
+
+// ─── Feature Flags (stub) ────────────────────────────────────
+
+model FeatureFlag {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  enabled     Boolean  @default(false)
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("feature_flags")
+}
