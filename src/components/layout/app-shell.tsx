@@ -18,7 +18,7 @@ export function AppShell({ children, title }: AppShellProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+    <div className="min-h-screen bg-dark">
       {/* Mobile overlay */}
       {mobileOpen && (
         <div
@@ -39,10 +39,7 @@ export function AppShell({ children, title }: AppShellProps) {
 
       {/* Main content area */}
       <div
-        className={cn(
-          "transition-all duration-300",
-          collapsed ? "lg:ml-16" : "lg:ml-64"
-        )}
+        className={cn("transition-all duration-300", collapsed ? "lg:ml-16" : "lg:ml-64")}
       >
         <Header
           sidebarCollapsed={collapsed}

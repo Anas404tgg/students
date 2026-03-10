@@ -8,7 +8,14 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { api } from "@/lib/api-client";
@@ -33,7 +40,8 @@ export function RegisterForm() {
     const errs: Record<string, string> = {};
     if (!form.name.trim()) errs.name = "Name is required";
     if (!form.email.trim()) errs.email = "Email is required";
-    if (form.password.length < 8) errs.password = "Password must be at least 8 characters";
+    if (form.password.length < 8)
+      errs.password = "Password must be at least 8 characters";
     if (form.password !== form.confirmPassword)
       errs.confirmPassword = "Passwords do not match";
     setErrors(errs);
@@ -59,7 +67,7 @@ export function RegisterForm() {
   return (
     <Card className="animate-fade-in">
       <CardHeader className="text-center">
-        <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-600 text-white">
+        <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-blue-500 text-white">
           <GraduationCap className="h-6 w-6" />
         </div>
         <CardTitle className="text-2xl">Create an account</CardTitle>
@@ -68,7 +76,9 @@ export function RegisterForm() {
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name" required>Full Name</Label>
+            <Label htmlFor="name" required>
+              Full Name
+            </Label>
             <Input
               id="name"
               placeholder="John Doe"
@@ -80,7 +90,9 @@ export function RegisterForm() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="reg-email" required>Email</Label>
+            <Label htmlFor="reg-email" required>
+              Email
+            </Label>
             <Input
               id="reg-email"
               type="email"
@@ -93,7 +105,9 @@ export function RegisterForm() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="reg-password" required>Password</Label>
+            <Label htmlFor="reg-password" required>
+              Password
+            </Label>
             <Input
               id="reg-password"
               type="password"
@@ -106,7 +120,9 @@ export function RegisterForm() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="confirm-password" required>Confirm Password</Label>
+            <Label htmlFor="confirm-password" required>
+              Confirm Password
+            </Label>
             <Input
               id="confirm-password"
               type="password"
@@ -124,9 +140,9 @@ export function RegisterForm() {
         </form>
       </CardContent>
       <CardFooter className="justify-center">
-        <p className="text-sm text-slate-500 dark:text-slate-400">
+        <p className="text-sm text-[#A0A0B0]">
           Already have an account?{" "}
-          <Link href="/login" className="font-medium text-brand-600 hover:underline dark:text-brand-400">
+          <Link href="/login" className="font-medium text-brand-400 hover:underline">
             Sign in
           </Link>
         </p>

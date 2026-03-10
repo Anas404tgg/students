@@ -17,11 +17,11 @@ describe("Badge", () => {
 
   it("applies success variant", () => {
     render(<Badge variant="success">OK</Badge>);
-    expect(screen.getByText("OK").className).toContain("bg-success");
+    expect(screen.getByText("OK").className).toContain("bg-green");
   });
 
   it("applies error variant", () => {
     render(<Badge variant="error">Fail</Badge>);
-    expect(screen.getByText("Fail").className).toContain("bg-error");
+    expect(screen.getByText("Fail").className).toContain("bg-red");
   });
 });

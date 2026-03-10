@@ -31,21 +31,14 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#020617" },
-  ],
+  themeColor: "#121212",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} dark`} suppressHydrationWarning>
       <head />
-      <body className="min-h-screen bg-white font-sans antialiased dark:bg-slate-950">
+      <body className="min-h-screen bg-dark font-sans antialiased">
         <SessionProvider>
           {/* Skip to main content — accessibility */}
           <a href="#main-content" className="skip-link">

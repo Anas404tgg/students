@@ -19,36 +19,32 @@ export function Header({ sidebarCollapsed, onMenuClick, title }: HeaderProps) {
   return (
     <header
       className={cn(
-        "sticky top-0 z-30 flex h-16 items-center border-b border-slate-200 bg-white/80 px-4 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80",
+        "sticky top-0 z-30 flex h-16 items-center border-b border-dark-border bg-dark-surface/80 px-4 backdrop-blur-md",
         sidebarCollapsed ? "lg:pl-20" : "lg:pl-68"
       )}
     >
       {/* Mobile menu button */}
       <button
         onClick={onMenuClick}
-        className="mr-4 rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 lg:hidden"
+        className="mr-4 rounded-lg p-2 text-[#A0A0B0] hover:bg-dark-hover lg:hidden"
       >
         <Menu className="h-5 w-5" />
         <span className="sr-only">Toggle menu</span>
       </button>
 
       {/* Page title */}
-      {title && (
-        <h1 className="text-lg font-semibold text-slate-900 dark:text-white">
-          {title}
-        </h1>
-      )}
+      {title && <h1 className="text-lg font-semibold text-[#EAEAF0]">{title}</h1>}
 
       {/* Right side actions */}
       <div className="ml-auto flex items-center gap-2">
         {/* Search */}
-        <button className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800">
+        <button className="rounded-lg p-2 text-[#A0A0B0] hover:bg-dark-hover">
           <Search className="h-5 w-5" />
           <span className="sr-only">Search</span>
         </button>
 
         {/* Notifications */}
-        <button className="relative rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800">
+        <button className="relative rounded-lg p-2 text-[#A0A0B0] hover:bg-dark-hover">
           <Bell className="h-5 w-5" />
           <span className="sr-only">Notifications</span>
         </button>

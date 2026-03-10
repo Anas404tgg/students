@@ -1,13 +1,11 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Design Token Rationale:
- * - Primary (Indigo): Professional, trustworthy — ideal for education/management apps
- * - Accent (Amber): Warm attention-grabbing for CTAs and highlights
- * - Success/Warning/Error: Standard semantic colors for feedback states
- * - Neutral (Slate): Balanced gray with slight blue undertone for modern feel
- * - Spacing uses 4px base grid for consistency
- * - Typography scale follows a 1.25 ratio (Major Third) for readability
+ * Dark Theme Design Tokens
+ * - Brand (#6C63FF): Vibrant purple-blue for primary actions and accents
+ * - Dark surfaces: Deep navy/charcoal for layered dark UI
+ * - Gradient: #6C63FF → #3B82F6 for eye-catching interactive elements
+ * - Icon colors: Blue (students), Purple (users), Green (active), Red (alerts)
  */
 const config: Config = {
   content: [
@@ -18,20 +16,28 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
-      // Design tokens — single source of truth for theming
       colors: {
+        // Dark theme surfaces
+        dark: {
+          DEFAULT: "#121212",
+          surface: "#1E1E2F",
+          hover: "#272740",
+          border: "#2E2E45",
+          input: "#1A1A2E",
+        },
+        // Brand — centered on #6C63FF
         brand: {
-          50: "#eef2ff",
-          100: "#e0e7ff",
-          200: "#c7d2fe",
-          300: "#a5b4fc",
-          400: "#818cf8",
-          500: "#6366f1", // Primary
-          600: "#4f46e5",
-          700: "#4338ca",
-          800: "#3730a3",
-          900: "#312e81",
-          950: "#1e1b4b",
+          50: "#f0eeff",
+          100: "#e0ddff",
+          200: "#c4bfff",
+          300: "#a5a0ff",
+          400: "#8a82ff",
+          500: "#6C63FF",
+          600: "#5a52e0",
+          700: "#4a43c0",
+          800: "#3b369e",
+          900: "#2e2a7e",
+          950: "#1a1850",
         },
         accent: {
           50: "#fffbeb",
@@ -39,7 +45,7 @@ const config: Config = {
           200: "#fde68a",
           300: "#fcd34d",
           400: "#fbbf24",
-          500: "#f59e0b", // Accent
+          500: "#f59e0b",
           600: "#d97706",
           700: "#b45309",
           800: "#92400e",
@@ -48,34 +54,28 @@ const config: Config = {
         },
         success: {
           50: "#f0fdf4",
-          100: "#dcfce7",
+          100: "#052e16",
           500: "#22c55e",
           600: "#16a34a",
           700: "#15803d",
         },
         warning: {
           50: "#fffbeb",
-          100: "#fef3c7",
+          100: "#422006",
           500: "#f59e0b",
           600: "#d97706",
           700: "#b45309",
         },
         error: {
           50: "#fef2f2",
-          100: "#fee2e2",
+          100: "#3b0f0f",
           500: "#ef4444",
           600: "#dc2626",
           700: "#b91c1c",
         },
       },
       fontFamily: {
-        sans: [
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "sans-serif",
-        ],
+        sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
         mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },
       fontSize: {
@@ -85,12 +85,13 @@ const config: Config = {
         "4xl": "2rem",
       },
       boxShadow: {
-        "soft-sm": "0 2px 8px -2px rgba(0, 0, 0, 0.08)",
-        soft: "0 4px 16px -4px rgba(0, 0, 0, 0.1)",
-        "soft-lg": "0 8px 32px -8px rgba(0, 0, 0, 0.12)",
-        "soft-xl": "0 16px 48px -12px rgba(0, 0, 0, 0.15)",
-        glow: "0 0 20px rgba(99, 102, 241, 0.3)",
-        "glow-lg": "0 0 40px rgba(99, 102, 241, 0.4)",
+        "soft-sm": "0 2px 8px -2px rgba(0, 0, 0, 0.3)",
+        soft: "0 4px 16px -4px rgba(0, 0, 0, 0.35)",
+        "soft-lg": "0 8px 20px rgba(0, 0, 0, 0.4)",
+        "soft-xl": "0 16px 48px -12px rgba(0, 0, 0, 0.5)",
+        glow: "0 0 20px rgba(108, 99, 255, 0.3)",
+        "glow-lg": "0 0 40px rgba(108, 99, 255, 0.4)",
+        card: "0 8px 20px rgba(0, 0, 0, 0.4)",
       },
       animation: {
         "fade-in": "fadeIn 0.3s ease-out",

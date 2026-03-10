@@ -2,54 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── CSS Custom Properties (Design Tokens) ─────────────────── */
+/* ─── CSS Custom Properties (Dark Theme) ────────────────────── */
 :root {
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  /* Light theme */
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 239 84% 67%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 239 84% 67%;
+  /* Dark theme — always active */
+  --background: #121212;
+  --foreground: #eaeaf0;
+  --card: #1e1e2f;
+  --card-foreground: #eaeaf0;
+  --popover: #1e1e2f;
+  --popover-foreground: #eaeaf0;
+  --primary: #6c63ff;
+  --primary-foreground: #eaeaf0;
+  --secondary: #272740;
+  --secondary-foreground: #eaeaf0;
+  --muted: #272740;
+  --muted-foreground: #a0a0b0;
+  --accent: #272740;
+  --accent-foreground: #eaeaf0;
+  --destructive: #dc2626;
+  --destructive-foreground: #eaeaf0;
+  --border: #2e2e45;
+  --input: #1a1a2e;
+  --ring: #6c63ff;
   --radius: 0.5rem;
-}
-
-.dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
-  --primary: 239 84% 67%;
-  --primary-foreground: 222.2 47.4% 11.2%;
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 239 84% 67%;
 }
 
 /* ─── Base Styles ────────────────────────────────────────────── */
@@ -62,13 +40,15 @@
   }
 
   body {
-    @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-50;
+    background-color: #121212;
+    color: #eaeaf0;
     font-family: var(--font-sans);
   }
 
   /* Focus visible styles for accessibility */
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-brand-500;
+    outline: 2px solid #6c63ff;
+    outline-offset: 2px;
   }
 
   /* Smooth scrollbar */
@@ -77,15 +57,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-transparent;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-slate-300 dark:bg-slate-700;
+    background: #2e2e45;
+    border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-slate-400 dark:bg-slate-600;
+    background: #3e3e58;
   }
 }
 
@@ -93,22 +74,28 @@
 @layer utilities {
   /* Gradient text utility */
   .text-gradient {
-    @apply bg-gradient-to-r from-brand-500 to-brand-700 bg-clip-text text-transparent;
+    background: linear-gradient(135deg, #6c63ff, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   /* Glass morphism */
   .glass {
-    @apply bg-white/70 backdrop-blur-xl dark:bg-slate-900/70;
+    background: rgba(30, 30, 47, 0.7);
+    backdrop-filter: blur(24px);
   }
 
   /* Skip to main content — accessibility */
   .skip-link {
-    @apply absolute -top-10 left-4 z-50 rounded bg-brand-600 px-4 py-2 text-white transition-all focus:top-4;
+    @apply absolute -top-10 left-4 z-50 rounded px-4 py-2 text-white transition-all focus:top-4;
+    background: #6c63ff;
   }
 
   /* Skeleton loading */
   .skeleton {
-    @apply animate-shimmer rounded bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 bg-[length:200%_100%] dark:from-slate-800 dark:via-slate-700 dark:to-slate-800;
+    @apply animate-shimmer rounded bg-[length:200%_100%];
+    background-image: linear-gradient(90deg, #1e1e2f, #272740, #1e1e2f);
   }
 
   /* Hide scrollbar */
@@ -124,7 +111,9 @@
 /* ─── Animation Classes ──────────────────────────────────────── */
 @layer utilities {
   .animate-enter {
-    animation: fadeIn 0.3s ease-out, slideUp 0.4s ease-out;
+    animation:
+      fadeIn 0.3s ease-out,
+      slideUp 0.4s ease-out;
   }
 
   .page-transition {

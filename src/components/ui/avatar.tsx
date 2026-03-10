@@ -27,11 +27,7 @@ function Avatar({ src, name, size = "md", className, ...props }: AvatarProps) {
         {...props}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={src}
-          alt={name}
-          className="h-full w-full object-cover"
-        />
+        <img src={src} alt={name} className="h-full w-full object-cover" />
       </div>
     );
   }
@@ -39,7 +35,7 @@ function Avatar({ src, name, size = "md", className, ...props }: AvatarProps) {
   return (
     <div
       className={cn(
-        "flex items-center justify-center rounded-full bg-brand-100 font-medium text-brand-700 dark:bg-brand-900/30 dark:text-brand-400",
+        "flex items-center justify-center rounded-full bg-brand-500/15 font-medium text-brand-400",
         sizeClasses[size],
         className
       )}

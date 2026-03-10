@@ -1,13 +1,7 @@
 // src/app/(dashboard)/dashboard/dashboard-content.tsx
 "use client";
 
-import {
-  GraduationCap,
-  TrendingUp,
-  UserCheck,
-  UserPlus,
-  Users,
-} from "lucide-react";
+import { GraduationCap, TrendingUp, UserCheck, UserPlus, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -46,25 +40,25 @@ export function DashboardContent() {
           title: "Total Students",
           value: stats.totalStudents,
           description: "All registered students",
-          icon: <Users className="h-5 w-5 text-brand-600" />,
+          icon: <Users className="h-5 w-5 text-blue-400" />,
         },
         {
           title: "Active Students",
           value: stats.activeStudents,
           description: `${stats.totalStudents ? Math.round((stats.activeStudents / stats.totalStudents) * 100) : 0}% of total`,
-          icon: <UserCheck className="h-5 w-5 text-success-600" />,
+          icon: <UserCheck className="h-5 w-5 text-green-400" />,
         },
         {
           title: "Graduated",
           value: stats.graduatedStudents,
           description: "Successfully completed",
-          icon: <GraduationCap className="h-5 w-5 text-accent-600" />,
+          icon: <GraduationCap className="h-5 w-5 text-purple-400" />,
         },
         {
           title: "New This Month",
           value: stats.newThisMonth,
           description: "Enrolled this month",
-          icon: <UserPlus className="h-5 w-5 text-brand-500" />,
+          icon: <UserPlus className="h-5 w-5 text-brand-400" />,
         },
       ]
     : [];
@@ -72,8 +66,8 @@ export function DashboardContent() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Dashboard</h1>
-        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+        <h1 className="text-2xl font-bold text-[#EAEAF0]">Dashboard</h1>
+        <p className="mt-1 text-sm text-[#A0A0B0]">
           Overview of your student management system
         </p>
       </div>
@@ -84,17 +78,11 @@ export function DashboardContent() {
           <Card key={card.title}>
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
-                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
-                  {card.title}
-                </p>
+                <p className="text-sm font-medium text-[#A0A0B0]">{card.title}</p>
                 {card.icon}
               </div>
-              <p className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
-                {card.value}
-              </p>
-              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                {card.description}
-              </p>
+              <p className="mt-2 text-3xl font-bold text-[#EAEAF0]">{card.value}</p>
+              <p className="mt-1 text-xs text-[#A0A0B0]">{card.description}</p>
             </CardContent>
           </Card>
         ))}
@@ -106,15 +94,15 @@ export function DashboardContent() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
-              <TrendingUp className="h-4 w-4 text-brand-600" />
+              <TrendingUp className="h-4 w-4 text-brand-400" />
               Average GPA
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold text-brand-600">
+            <p className="text-gradient text-4xl font-bold">
               {stats?.averageGpa != null ? stats.averageGpa.toFixed(2) : "N/A"}
             </p>
-            <p className="mt-1 text-sm text-slate-500">Across all active students</p>
+            <p className="mt-1 text-sm text-[#A0A0B0]">Across all active students</p>
           </CardContent>
         </Card>
 
@@ -129,7 +117,7 @@ export function DashboardContent() {
                 Object.entries(stats.statusDistribution).map(([status, count]) => (
                   <div
                     key={status}
-                    className="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2 dark:border-slate-700"
+                    className="flex items-center gap-2 rounded-lg border border-dark-border px-3 py-2"
                   >
                     <Badge
                       variant={
@@ -144,9 +132,7 @@ export function DashboardContent() {
                     >
                       {status}
                     </Badge>
-                    <span className="text-sm font-semibold text-slate-900 dark:text-white">
-                      {count}
-                    </span>
+                    <span className="text-sm font-semibold text-[#EAEAF0]">{count}</span>
                   </div>
                 ))}
             </div>
@@ -168,18 +154,18 @@ export function DashboardContent() {
                   : 0;
                 return (
                   <div key={item.program} className="flex items-center gap-4">
-                    <span className="w-32 truncate text-sm text-slate-700 dark:text-slate-300">
+                    <span className="w-32 truncate text-sm text-[#EAEAF0]">
                       {item.program || "Unassigned"}
                     </span>
                     <div className="flex-1">
-                      <div className="h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+                      <div className="h-2 overflow-hidden rounded-full bg-dark-hover">
                         <div
-                          className="h-full rounded-full bg-brand-500 transition-all"
+                          className="h-full rounded-full bg-gradient-to-r from-brand-500 to-blue-500 transition-all"
                           style={{ width: `${pct}%` }}
                         />
                       </div>
                     </div>
-                    <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
+                    <span className="text-sm font-medium text-[#A0A0B0]">
                       {item.count}
                     </span>
                   </div>

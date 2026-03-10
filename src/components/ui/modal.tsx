@@ -61,7 +61,7 @@ export function Modal({
             >
               <Dialog.Panel
                 className={cn(
-                  "w-full transform rounded-2xl bg-white p-6 shadow-soft-xl transition-all dark:bg-slate-900",
+                  "w-full transform rounded-2xl border border-dark-border bg-dark-surface p-6 shadow-soft-xl transition-all",
                   sizeClasses[size],
                   className
                 )}
@@ -69,19 +69,19 @@ export function Modal({
                 <div className="flex items-start justify-between">
                   <div>
                     {title && (
-                      <Dialog.Title className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                      <Dialog.Title className="text-lg font-semibold text-[#EAEAF0]">
                         {title}
                       </Dialog.Title>
                     )}
                     {description && (
-                      <Dialog.Description className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                      <Dialog.Description className="mt-1 text-sm text-[#A0A0B0]">
                         {description}
                       </Dialog.Description>
                     )}
                   </div>
                   <button
                     onClick={onClose}
-                    className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300"
+                    className="rounded-lg p-1 text-[#6B6B80] hover:bg-dark-hover hover:text-[#A0A0B0]"
                   >
                     <X className="h-5 w-5" />
                     <span className="sr-only">Close</span>

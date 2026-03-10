@@ -58,8 +58,10 @@ export function UsersContent() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">User Management</h1>
-        <p className="mt-1 text-sm text-slate-500">Manage system users and their access</p>
+        <h1 className="text-2xl font-bold text-[#EAEAF0]">User Management</h1>
+        <p className="mt-1 text-sm text-[#A0A0B0]">
+          Manage system users and their access
+        </p>
       </div>
 
       <Card>
@@ -86,12 +88,16 @@ export function UsersContent() {
                   <TableRow key={user.id}>
                     <TableCell>
                       <div className="flex items-center gap-3">
-                        <Avatar name={user.name || user.email} src={user.avatar} size="sm" />
+                        <Avatar
+                          name={user.name || user.email}
+                          src={user.avatar}
+                          size="sm"
+                        />
                         <div>
-                          <p className="font-medium text-slate-900 dark:text-white">
+                          <p className="font-medium text-[#EAEAF0]">
                             {user.name || "Unnamed"}
                           </p>
-                          <p className="text-sm text-slate-500">{user.email}</p>
+                          <p className="text-sm text-[#A0A0B0]">{user.email}</p>
                         </div>
                       </div>
                     </TableCell>
@@ -105,7 +111,7 @@ export function UsersContent() {
                         {user.isActive ? "Active" : "Inactive"}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-slate-500">
+                    <TableCell className="text-[#A0A0B0]">
                       {new Date(user.createdAt).toLocaleDateString()}
                     </TableCell>
                     <TableCell className="text-right">

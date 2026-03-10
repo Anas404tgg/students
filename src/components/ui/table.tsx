@@ -9,11 +9,17 @@ function Table({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) 
   );
 }
 
-function TableHeader({ className, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) {
+function TableHeader({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLTableSectionElement>) {
   return <thead className={cn("[&_tr]:border-b", className)} {...props} />;
 }
 
-function TableBody({ className, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) {
+function TableBody({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLTableSectionElement>) {
   return <tbody className={cn("[&_tr:last-child]:border-0", className)} {...props} />;
 }
 
@@ -21,7 +27,7 @@ function TableRow({ className, ...props }: React.HTMLAttributes<HTMLTableRowElem
   return (
     <tr
       className={cn(
-        "border-b border-slate-200 transition-colors hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800/50",
+        "border-b border-dark-border transition-colors hover:bg-dark-hover/50",
         className
       )}
       {...props}
@@ -29,11 +35,14 @@ function TableRow({ className, ...props }: React.HTMLAttributes<HTMLTableRowElem
   );
 }
 
-function TableHead({ className, ...props }: React.ThHTMLAttributes<HTMLTableCellElement>) {
+function TableHead({
+  className,
+  ...props
+}: React.ThHTMLAttributes<HTMLTableCellElement>) {
   return (
     <th
       className={cn(
-        "h-12 px-4 text-left align-middle text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400",
+        "h-12 px-4 text-left align-middle text-xs font-medium uppercase tracking-wider text-[#A0A0B0]",
         className
       )}
       {...props}
@@ -41,12 +50,12 @@ function TableHead({ className, ...props }: React.ThHTMLAttributes<HTMLTableCell
   );
 }
 
-function TableCell({ className, ...props }: React.TdHTMLAttributes<HTMLTableCellElement>) {
+function TableCell({
+  className,
+  ...props
+}: React.TdHTMLAttributes<HTMLTableCellElement>) {
   return (
-    <td
-      className={cn("px-4 py-3 align-middle text-slate-700 dark:text-slate-300", className)}
-      {...props}
-    />
+    <td className={cn("px-4 py-3 align-middle text-[#EAEAF0]", className)} {...props} />
   );
 }
 

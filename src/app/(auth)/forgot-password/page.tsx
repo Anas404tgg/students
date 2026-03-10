@@ -7,7 +7,13 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { api } from "@/lib/api-client";
@@ -35,7 +41,7 @@ export default function ForgotPasswordPage() {
     return (
       <Card className="animate-fade-in text-center">
         <CardHeader>
-          <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-success-100 text-success-600">
+          <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-green-500/15 text-green-400">
             <Mail className="h-6 w-6" />
           </div>
           <CardTitle>Check your email</CardTitle>
@@ -57,7 +63,7 @@ export default function ForgotPasswordPage() {
   return (
     <Card className="animate-fade-in">
       <CardHeader className="text-center">
-        <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-600 text-white">
+        <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-blue-500 text-white">
           <GraduationCap className="h-6 w-6" />
         </div>
         <CardTitle className="text-2xl">Reset password</CardTitle>
@@ -68,7 +74,9 @@ export default function ForgotPasswordPage() {
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="fp-email" required>Email</Label>
+            <Label htmlFor="fp-email" required>
+              Email
+            </Label>
             <Input
               id="fp-email"
               type="email"
@@ -83,7 +91,7 @@ export default function ForgotPasswordPage() {
             Send reset link
           </Button>
           <div className="text-center">
-            <Link href="/login" className="text-sm text-brand-600 hover:underline dark:text-brand-400">
+            <Link href="/login" className="text-sm text-brand-400 hover:underline">
               <ArrowLeft className="mr-1 inline h-3 w-3" /> Back to sign in
             </Link>
           </div>

@@ -17,8 +17,10 @@ export function NewStudentContent() {
           <ArrowLeft className="h-5 w-5" />
         </Button>
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Add New Student</h1>
-          <p className="text-sm text-slate-500">Fill in the details to register a new student</p>
+          <h1 className="text-2xl font-bold text-[#EAEAF0]">Add New Student</h1>
+          <p className="text-sm text-[#A0A0B0]">
+            Fill in the details to register a new student
+          </p>
         </div>
       </div>
 

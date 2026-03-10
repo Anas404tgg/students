@@ -1,14 +1,7 @@
 // src/app/(dashboard)/students/students-content.tsx
 "use client";
 
-import {
-  ChevronLeft,
-  ChevronRight,
-  Download,
-  Plus,
-  Search,
-  Trash2,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, Plus, Search, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -51,27 +44,28 @@ export function StudentsContent() {
   const [statusFilter, setStatusFilter] = useState("");
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
-  const fetchStudents = useCallback(
-    async (p: number, q: string, status: string) => {
-      setLoading(true);
-      try {
-        const params = new URLSearchParams({ page: String(p), limit: "10" });
-        if (q) params.set("search", q);
-        if (status) params.set("status", status);
+  const fetchStudents = useCallback(async (p: number, q: string, status: string) => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams({ page: String(p), limit: "10" });
+      if (q) params.set("search", q);
+      if (status) params.set("status", status);
 
-        const res = await api.get<PaginatedResponse<StudentSummary>>(
-          `/students?${params.toString()}`
-        );
-        setStudents(res.data);
-        setMeta({ total: res.meta.total, totalPages: res.meta.totalPages, hasMore: res.meta.hasMore });
-      } catch {
-        // error toast handled by api client
-      } finally {
-        setLoading(false);
-      }
-    },
-    []
-  );
+      const res = await api.get<PaginatedResponse<StudentSummary>>(
+        `/students?${params.toString()}`
+      );
+      setStudents(res.data);
+      setMeta({
+        total: res.meta.total,
+        totalPages: res.meta.totalPages,
+        hasMore: res.meta.hasMore,
+      });
+    } catch {
+      // error toast handled by api client
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSearch = useCallback(
@@ -151,18 +145,15 @@ export function StudentsContent() {
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Students</h1>
-          <p className="mt-1 text-sm text-slate-500">{meta.total} total students</p>
+          <h1 className="text-2xl font-bold text-[#EAEAF0]">Students</h1>
+          <p className="mt-1 text-sm text-[#A0A0B0]">{meta.total} total students</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={handleExport}>
             <Download className="mr-1.5 h-4 w-4" />
             Export
           </Button>
-          <Button
-            size="sm"
-            onClick={() => router.push("/students/new")}
-          >
+          <Button size="sm" onClick={() => router.push("/students/new")}>
             <Plus className="mr-1.5 h-4 w-4" />
             Add Student
           </Button>
@@ -196,8 +187,8 @@ export function StudentsContent() {
 
       {/* Bulk Actions */}
       {selected.size > 0 && (
-        <div className="flex items-center gap-3 rounded-lg border border-brand-200 bg-brand-50 px-4 py-2 dark:border-brand-800 dark:bg-brand-950">
-          <span className="text-sm font-medium text-brand-700 dark:text-brand-300">
+        <div className="flex items-center gap-3 rounded-lg border border-brand-500/30 bg-brand-500/10 px-4 py-2">
+          <span className="text-sm font-medium text-brand-300">
             {selected.size} selected
           </span>
           <Button variant="destructive" size="sm" onClick={handleBulkDelete}>
@@ -262,7 +253,7 @@ export function StudentsContent() {
                 {students.map((student) => (
                   <TableRow
                     key={student.id}
-                    className="cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                    className="cursor-pointer hover:bg-dark-hover/50"
                     onClick={() => router.push(`/students/${student.id}`)}
                   >
                     <TableCell onClick={(e) => e.stopPropagation()}>
@@ -276,15 +267,17 @@ export function StudentsContent() {
                     <TableCell className="font-medium">
                       {student.firstName} {student.lastName}
                     </TableCell>
-                    <TableCell className="text-slate-500">{student.email}</TableCell>
+                    <TableCell className="text-[#A0A0B0]">{student.email}</TableCell>
                     <TableCell>{student.program || "—"}</TableCell>
-                    <TableCell>{student.gpa != null ? student.gpa.toFixed(2) : "—"}</TableCell>
+                    <TableCell>
+                      {student.gpa != null ? student.gpa.toFixed(2) : "—"}
+                    </TableCell>
                     <TableCell>
                       <Badge variant={STATUS_COLORS[student.status] || "secondary"}>
                         {student.status}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-slate-500">
+                    <TableCell className="text-[#A0A0B0]">
                       {student.enrollmentDate
                         ? new Date(student.enrollmentDate).toLocaleDateString()
                         : "—"}
@@ -300,7 +293,7 @@ export function StudentsContent() {
       {/* Pagination */}
       {meta.totalPages > 1 && (
         <div className="flex items-center justify-between">
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-[#A0A0B0]">
             Page {page} of {meta.totalPages}
           </p>
           <div className="flex gap-2">

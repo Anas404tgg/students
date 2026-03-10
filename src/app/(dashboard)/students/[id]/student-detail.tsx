@@ -8,7 +8,15 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { StudentForm } from "@/components/students/student-form";
-import { Badge, Button, Card, CardContent, CardHeader, CardTitle, Skeleton } from "@/components/ui";
+import {
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Skeleton,
+} from "@/components/ui";
 import { api } from "@/lib/api-client";
 
 interface Props {
@@ -77,10 +85,10 @@ export function StudentDetail({ id }: Props) {
             <ArrowLeft className="h-5 w-5" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+            <h1 className="text-2xl font-bold text-[#EAEAF0]">
               {student.firstName} {student.lastName}
             </h1>
-            <p className="text-sm text-slate-500">{student.email}</p>
+            <p className="text-sm text-[#A0A0B0]">{student.email}</p>
           </div>
         </div>
         <div className="flex gap-2">
@@ -91,11 +99,7 @@ export function StudentDetail({ id }: Props) {
             </Button>
           ) : (
             <>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setEditing(!editing)}
-              >
+              <Button variant="outline" size="sm" onClick={() => setEditing(!editing)}>
                 {editing ? "Cancel" : "Edit"}
               </Button>
               <Button variant="destructive" size="sm" onClick={handleDelete}>
@@ -132,16 +136,44 @@ function StudentInfo({ student }: { student: Student }) {
   };
 
   const fields: { label: string; value: React.ReactNode }[] = [
-    { label: "Status", value: <Badge variant={STATUS_COLORS[student.status] || "secondary"}>{student.status}</Badge> },
+    {
+      label: "Status",
+      value: (
+        <Badge variant={STATUS_COLORS[student.status] || "secondary"}>
+          {student.status}
+        </Badge>
+      ),
+    },
     { label: "Program", value: student.program || "—" },
     { label: "Year", value: student.year ?? "—" },
     { label: "GPA", value: student.gpa != null ? Number(student.gpa).toFixed(2) : "—" },
     { label: "Gender", value: student.gender || "—" },
     { label: "Phone", value: student.phone || "—" },
-    { label: "Date of Birth", value: student.dateOfBirth ? new Date(student.dateOfBirth).toLocaleDateString() : "—" },
-    { label: "Enrollment Date", value: student.enrollmentDate ? new Date(student.enrollmentDate).toLocaleDateString() : "—" },
-    { label: "Graduation Date", value: student.graduationDate ? new Date(student.graduationDate).toLocaleDateString() : "—" },
-    { label: "Address", value: [student.address, student.city, student.state, student.zipCode, student.country].filter(Boolean).join(", ") || "—" },
+    {
+      label: "Date of Birth",
+      value: student.dateOfBirth
+        ? new Date(student.dateOfBirth).toLocaleDateString()
+        : "—",
+    },
+    {
+      label: "Enrollment Date",
+      value: student.enrollmentDate
+        ? new Date(student.enrollmentDate).toLocaleDateString()
+        : "—",
+    },
+    {
+      label: "Graduation Date",
+      value: student.graduationDate
+        ? new Date(student.graduationDate).toLocaleDateString()
+        : "—",
+    },
+    {
+      label: "Address",
+      value:
+        [student.address, student.city, student.state, student.zipCode, student.country]
+          .filter(Boolean)
+          .join(", ") || "—",
+    },
     { label: "Notes", value: student.notes || "—" },
   ];
 
@@ -154,8 +186,8 @@ function StudentInfo({ student }: { student: Student }) {
         <dl className="grid gap-4 sm:grid-cols-2">
           {fields.map((field) => (
             <div key={field.label}>
-              <dt className="text-sm font-medium text-slate-500 dark:text-slate-400">{field.label}</dt>
-              <dd className="mt-1 text-sm text-slate-900 dark:text-white">{field.value}</dd>
+              <dt className="text-sm font-medium text-[#A0A0B0]">{field.label}</dt>
+              <dd className="mt-1 text-sm text-[#EAEAF0]">{field.value}</dd>
             </div>
           ))}
         </dl>

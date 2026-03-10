@@ -121,7 +121,7 @@ export function StudentForm({ student, onSuccess }: Props) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {errors._form && (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+        <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400">
           {errors._form}
         </div>
       )}
@@ -133,7 +133,9 @@ export function StudentForm({ student, onSuccess }: Props) {
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2">
           <div>
-            <Label htmlFor="firstName" required>First Name</Label>
+            <Label htmlFor="firstName" required>
+              First Name
+            </Label>
             <Input
               id="firstName"
               value={form.firstName}
@@ -142,7 +144,9 @@ export function StudentForm({ student, onSuccess }: Props) {
             />
           </div>
           <div>
-            <Label htmlFor="lastName" required>Last Name</Label>
+            <Label htmlFor="lastName" required>
+              Last Name
+            </Label>
             <Input
               id="lastName"
               value={form.lastName}
@@ -151,7 +155,9 @@ export function StudentForm({ student, onSuccess }: Props) {
             />
           </div>
           <div>
-            <Label htmlFor="email" required>Email</Label>
+            <Label htmlFor="email" required>
+              Email
+            </Label>
             <Input
               id="email"
               type="email"
@@ -282,7 +288,9 @@ export function StudentForm({ student, onSuccess }: Props) {
             />
           </div>
           <div>
-            <Label htmlFor="status" required>Status</Label>
+            <Label htmlFor="status" required>
+              Status
+            </Label>
             <Select
               id="status"
               value={form.status}
@@ -327,11 +335,7 @@ export function StudentForm({ student, onSuccess }: Props) {
 
       {/* Submit */}
       <div className="flex justify-end gap-3">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => router.back()}
-        >
+        <Button type="button" variant="outline" onClick={() => router.back()}>
           Cancel
         </Button>
         <Button type="submit" isLoading={saving}>

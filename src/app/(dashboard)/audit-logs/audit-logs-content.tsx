@@ -23,7 +23,10 @@ import { api } from "@/lib/api-client";
 import { AUDIT_ACTIONS } from "@/lib/constants";
 import type { AuditLogEntry, PaginatedResponse } from "@/types";
 
-const ACTION_COLORS: Record<string, "success" | "error" | "warning" | "secondary" | "default"> = {
+const ACTION_COLORS: Record<
+  string,
+  "success" | "error" | "warning" | "secondary" | "default"
+> = {
   CREATE: "success",
   UPDATE: "default",
   DELETE: "error",
@@ -50,7 +53,11 @@ export function AuditLogsContent() {
         `/audit-logs?${params.toString()}`
       );
       setLogs(res.data);
-      setMeta({ total: res.meta.total, totalPages: res.meta.totalPages, hasMore: res.meta.hasMore });
+      setMeta({
+        total: res.meta.total,
+        totalPages: res.meta.totalPages,
+        hasMore: res.meta.hasMore,
+      });
     } catch {
       // handled by api client
     } finally {
@@ -66,8 +73,8 @@ export function AuditLogsContent() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Audit Logs</h1>
-          <p className="mt-1 text-sm text-slate-500">{meta.total} total entries</p>
+          <h1 className="text-2xl font-bold text-[#EAEAF0]">Audit Logs</h1>
+          <p className="mt-1 text-sm text-[#A0A0B0]">{meta.total} total entries</p>
         </div>
         <Select
           value={actionFilter}
@@ -97,9 +104,11 @@ export function AuditLogsContent() {
           ) : logs.length === 0 ? (
             <div className="py-12">
               <EmptyState
-                icon={<FileText className="h-10 w-10 text-slate-400" />}
+                icon={<FileText className="h-10 w-10 text-[#6B6B80]" />}
                 title="No audit logs found"
-                description={actionFilter ? "Try changing the filter" : "No activity recorded yet"}
+                description={
+                  actionFilter ? "Try changing the filter" : "No activity recorded yet"
+                }
               />
             </div>
           ) : (
@@ -121,15 +130,17 @@ export function AuditLogsContent() {
                       </Badge>
                     </TableCell>
                     <TableCell>
-                      <span className="text-slate-700 dark:text-slate-300">{log.entity}</span>
+                      <span className="text-[#EAEAF0]">{log.entity}</span>
                       {log.entityId && (
-                        <span className="ml-1 text-xs text-slate-400">
+                        <span className="ml-1 text-xs text-[#6B6B80]">
                           #{log.entityId.slice(0, 8)}
                         </span>
                       )}
                     </TableCell>
-                    <TableCell className="text-slate-500">{log.userName || "System"}</TableCell>
-                    <TableCell className="text-slate-500">
+                    <TableCell className="text-[#A0A0B0]">
+                      {log.userName || "System"}
+                    </TableCell>
+                    <TableCell className="text-[#A0A0B0]">
                       {new Date(log.createdAt).toLocaleString()}
                     </TableCell>
                   </TableRow>
@@ -142,7 +153,7 @@ export function AuditLogsContent() {
 
       {meta.totalPages > 1 && (
         <div className="flex items-center justify-between">
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-[#A0A0B0]">
             Page {page} of {meta.totalPages}
           </p>
           <div className="flex gap-2">

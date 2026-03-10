@@ -55,8 +55,8 @@ export function SettingsContent() {
   return (
     <div className="max-w-2xl space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Settings</h1>
-        <p className="mt-1 text-sm text-slate-500">Manage your account settings</p>
+        <h1 className="text-2xl font-bold text-[#EAEAF0]">Settings</h1>
+        <p className="mt-1 text-sm text-[#A0A0B0]">Manage your account settings</p>
       </div>
 
       {profile && <ProfileSection profile={profile} onUpdate={setProfile} />}
@@ -170,12 +170,14 @@ function ChangePasswordSection() {
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+            <div className="rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-400">
               {error}
             </div>
           )}
           <div>
-            <Label htmlFor="currentPassword" required>Current Password</Label>
+            <Label htmlFor="currentPassword" required>
+              Current Password
+            </Label>
             <Input
               id="currentPassword"
               type="password"
@@ -185,7 +187,9 @@ function ChangePasswordSection() {
             />
           </div>
           <div>
-            <Label htmlFor="newPassword" required>New Password</Label>
+            <Label htmlFor="newPassword" required>
+              New Password
+            </Label>
             <Input
               id="newPassword"
               type="password"
@@ -196,7 +200,9 @@ function ChangePasswordSection() {
             />
           </div>
           <div>
-            <Label htmlFor="confirmPassword" required>Confirm New Password</Label>
+            <Label htmlFor="confirmPassword" required>
+              Confirm New Password
+            </Label>
             <Input
               id="confirmPassword"
               type="password"

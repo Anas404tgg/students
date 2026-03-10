@@ -38,20 +38,18 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "fixed inset-y-0 left-0 z-40 flex flex-col border-r border-slate-200 bg-white transition-all duration-300 dark:border-slate-800 dark:bg-slate-950",
+        "fixed inset-y-0 left-0 z-40 flex flex-col border-r border-dark-border bg-dark-surface transition-all duration-300",
         collapsed ? "w-16" : "w-64"
       )}
     >
       {/* Logo */}
-      <div className="flex h-16 items-center border-b border-slate-200 px-4 dark:border-slate-800">
+      <div className="flex h-16 items-center border-b border-dark-border px-4">
         <Link href="/dashboard" className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-sm font-bold text-white">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-blue-500 text-sm font-bold text-white">
             S
           </div>
           {!collapsed && (
-            <span className="text-lg font-semibold text-slate-900 dark:text-white">
-              SMS
-            </span>
+            <span className="text-lg font-semibold text-[#EAEAF0]">SMS</span>
           )}
         </Link>
       </div>
@@ -71,8 +69,8 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
               className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-brand-50 text-brand-700 dark:bg-brand-900/20 dark:text-brand-400"
-                  : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+                  ? "bg-brand-500/15 text-brand-400"
+                  : "text-[#A0A0B0] hover:bg-dark-hover hover:text-[#EAEAF0]"
               )}
               title={collapsed ? item.label : undefined}
             >
@@ -84,17 +82,19 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       </nav>
 
       {/* Bottom: user + collapse */}
-      <div className="border-t border-slate-200 p-3 dark:border-slate-800">
+      <div className="border-t border-dark-border p-3">
         {/* User info */}
         {user && (
-          <div className={cn("mb-2 flex items-center gap-3", collapsed && "justify-center")}>
+          <div
+            className={cn("mb-2 flex items-center gap-3", collapsed && "justify-center")}
+          >
             <Avatar name={user.name ?? user.email} src={user.avatar} size="sm" />
             {!collapsed && (
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-100">
+                <p className="truncate text-sm font-medium text-[#EAEAF0]">
                   {user.name ?? "User"}
                 </p>
-                <p className="truncate text-xs text-slate-500">{user.email}</p>
+                <p className="truncate text-xs text-[#A0A0B0]">{user.email}</p>
               </div>
             )}
           </div>
@@ -104,7 +104,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
         <button
           onClick={() => signOut({ callbackUrl: "/login" })}
           className={cn(
-            "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200",
+            "flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-[#A0A0B0] transition-colors hover:bg-dark-hover hover:text-[#EAEAF0]",
             collapsed && "justify-center"
           )}
           title={collapsed ? "Sign out" : undefined}
@@ -117,7 +117,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
         <button
           onClick={onToggle}
           className={cn(
-            "mt-1 flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300",
+            "mt-1 flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-[#6B6B80] transition-colors hover:bg-dark-hover hover:text-[#A0A0B0]",
             collapsed && "justify-center"
           )}
         >
