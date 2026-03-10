@@ -27,10 +27,21 @@ async function request<T>(
 
   if (!res.ok) {
     const message = json?.error?.message || "Something went wrong";
+    const details: Record<string, string[]> | undefined = json?.error?.details;
+
     if (showErrorToast) {
-      toast.error(message);
+      if (details) {
+        const firstField = Object.keys(details)[0];
+        const firstMsg = firstField ? details[firstField]?.[0] : undefined;
+        toast.error(firstMsg || message);
+      } else {
+        toast.error(message);
+      }
     }
-    throw new Error(message);
+
+    const err = new Error(message) as Error & { details?: Record<string, string[]> };
+    err.details = details;
+    throw err;
   }
 
   return json;

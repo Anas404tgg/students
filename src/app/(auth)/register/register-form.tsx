@@ -40,8 +40,13 @@ export function RegisterForm() {
     const errs: Record<string, string> = {};
     if (!form.name.trim()) errs.name = "Name is required";
     if (!form.email.trim()) errs.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+      errs.email = "Invalid email address";
     if (form.password.length < 8)
       errs.password = "Password must be at least 8 characters";
+    else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(form.password))
+      errs.password =
+        "Password must contain at least one lowercase letter, one uppercase letter, and one number";
     if (form.password !== form.confirmPassword)
       errs.confirmPassword = "Passwords do not match";
     setErrors(errs);
@@ -57,8 +62,15 @@ export function RegisterForm() {
       await api.post("/auth/register", form);
       toast.success("Account created! Please sign in.");
       router.push("/login");
-    } catch {
-      // Error toast already shown by api client
+    } catch (err: unknown) {
+      const error = err as Error & { details?: Record<string, string[]> };
+      if (error.details) {
+        const fieldErrors: Record<string, string> = {};
+        for (const [field, messages] of Object.entries(error.details)) {
+          if (messages[0]) fieldErrors[field] = messages[0];
+        }
+        setErrors(fieldErrors);
+      }
     } finally {
       setIsLoading(false);
     }
