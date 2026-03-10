@@ -3,8 +3,8 @@ const nextConfig = {
   // Strict React mode for catching bugs early
   reactStrictMode: true,
 
-  // Standalone output for Docker deployments
-  output: "standalone",
+  // Standalone output for Docker deployments (skip on Vercel)
+  ...(process.env.VERCEL ? {} : { output: "standalone" }),
 
   // Image optimization domains
   images: {

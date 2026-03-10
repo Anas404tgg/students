@@ -2,6 +2,8 @@
   "$schema": "https://json.schemastore.org/vercel.json",
   "framework": "nextjs",
   "regions": ["iad1"],
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "prisma generate && prisma db push --skip-generate && next build",
   "headers": [
     {
       "source": "/api/(.*)",
