@@ -3,6 +3,9 @@ const nextConfig = {
   // Strict React mode for catching bugs early
   reactStrictMode: true,
 
+  // Standalone output for Docker deployments
+  output: "standalone",
+
   // Image optimization domains
   images: {
     remotePatterns: [
