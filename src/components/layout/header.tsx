@@ -33,7 +33,10 @@ export function Header({ sidebarCollapsed, onMenuClick, title }: HeaderProps) {
       </button>
 
       {/* Page title */}
-      {title && <h1 className="text-lg font-semibold text-[#EAEAF0]">{title}</h1>}
+      <h1 className="text-lg font-semibold tracking-tight text-[#EAEAF0]">
+        <span className="text-gradient bg-gradient-to-r from-brand-500 to-blue-500 bg-clip-text text-transparent">Student</span>{" "}
+        Management System
+      </h1>
 
       {/* Right side actions */}
       <div className="ml-auto flex items-center gap-2">
