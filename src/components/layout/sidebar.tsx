@@ -45,8 +45,8 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       {/* Logo */}
       <div className="flex h-16 items-center border-b border-dark-border px-4">
         <Link href="/dashboard" className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-blue-500 text-sm font-bold text-white">
-            S
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-blue-500 text-white">
+            <GraduationCap className="h-5 w-5" />
           </div>
           {!collapsed && (
             <span className="text-lg font-semibold text-[#EAEAF0]">SMS</span>
