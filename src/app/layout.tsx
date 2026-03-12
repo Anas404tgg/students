@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     "A modern, production-ready student management system built with Next.js, Prisma, and TypeScript.",
   keywords: ["student management", "education", "admin", "next.js"],
   authors: [{ name: "SMS Team" }],
+  icons: {
+    icon: "/icon.svg",
+  },
   robots: {
     index: false, // Internal app — no indexing
     follow: false,

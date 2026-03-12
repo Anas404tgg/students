@@ -10,10 +10,9 @@ import { Sidebar } from "./sidebar";
 
 interface AppShellProps {
   children: React.ReactNode;
-  title?: string;
 }
 
-export function AppShell({ children, title }: AppShellProps) {
+export function AppShell({ children }: AppShellProps) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -44,7 +43,6 @@ export function AppShell({ children, title }: AppShellProps) {
         <Header
           sidebarCollapsed={collapsed}
           onMenuClick={() => setMobileOpen(!mobileOpen)}
-          title={title}
         />
         <main id="main-content" className="p-4 sm:p-6 lg:p-8">
           {children}

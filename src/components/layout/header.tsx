@@ -10,10 +10,9 @@ import { cn } from "@/lib/utils";
 interface HeaderProps {
   sidebarCollapsed: boolean;
   onMenuClick: () => void;
-  title?: string;
 }
 
-export function Header({ sidebarCollapsed, onMenuClick, title }: HeaderProps) {
+export function Header({ sidebarCollapsed, onMenuClick }: HeaderProps) {
   const { user } = useCurrentUser();
 
   return (
